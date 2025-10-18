@@ -1,0 +1,32 @@
+
+site_name: Lyceum Vault
+site_url: https://leo-nakayama.github.io
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - content.code.copy
+nav:
+  - Home: index.md
+  - Projects:
+      - Lyceum Workbench: projects/lyceum-workbench.md
+      - DSL Inference App: projects/dsl-inference-app.md
+  - Notes:
+      - PreSonus Cancel Guide: notes/presonus-cancel-guide.md
+      - Fcitx5 Setup (KDE/Ubuntu): notes/fcitx5-setup.md
+      - Fedora Samba Permissions: notes/fedora-samba-permissions.md
+  - Essays:
+      - Education Narrative Structure: essays/education-narrative-structure.md
+markdown_extensions:
+  - admonition
+  - codehilite
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+extra:
+  social:
+    - icon: material/github
+      link: https://github.com/leo-nakayama/

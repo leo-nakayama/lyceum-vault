@@ -17,6 +17,7 @@ nav:
       - PreSonus Cancel Guide: notes/presonus-cancel-guide.md
       - Fcitx5 Setup (KDE/Ubuntu): notes/fcitx5-setup.md
       - Fedora Samba Permissions: notes/fedora-samba-permissions.md
+      - GitHub Action vs AWS CI/CD: notes/github-actions-vs-aws-cicd.md
   - Essays:
       - Education Narrative Structure: essays/education-narrative-structure.md
 markdown_extensions:

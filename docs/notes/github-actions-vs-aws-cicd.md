@@ -105,11 +105,14 @@ In CodePipeline, the **Deploy** action would publish the build artifact to S3 au
 
 ---
 
-## Why GitHub Actions felt simpler
+## Why GitHub Actions "feels" simpler
 
 * **Fewer moving parts**: one YAML in your repo; no IAM/S3/CloudFront wiring.
 * **Built-in hosting**: GitHub Pages vs rolling your own static hosting stack.
 * **Auth**: ephemeral `GITHUB_TOKEN` vs IAM roles/secrets setup.
+
+
+### Comparison
 
 AWS shines when you need **deep integration** with AWS workloads (ECS/EKS/Lambda, multi-account deployments, secrets, VPC builds, etc.). For a **static MkDocs site**, GitHub Actions + Pages is lean and perfect.
 

@@ -15,6 +15,7 @@ DRYRUN="${DRYRUN:-0}"   # set to 1 or pass -n to simulate rsync
 # --- Flags ---
 if [[ "${1:-}" == "-n" || "${2:-}" == "-n" ]]; then
   DRYRUN=1
+  echo "dry run is not working yet"
 fi
 
 echo "== Lyceum Vault: publish & backup =="

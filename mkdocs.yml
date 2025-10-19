@@ -10,6 +10,12 @@ theme:
     - content.code.copy
 nav:
   - Home: index.md
+  - Reflective Computing:
+      - Overview: reflective-computing/index.md
+      - Synthetic Naikan: reflective-computing/synthetic-naikan.md
+      - Aristotelian Biodome: reflective-computing/aristotelian-biodome.md
+      - Dialectic Modes: reflective-computing/dialectic-modes.md
+      - Manifesto: reflective-computing/reflective-computing-manifesto.md
   - Projects:
       - Lyceum Workbench: projects/lyceum-workbench.md
       - DSL Inference App: projects/dsl-inference-app.md

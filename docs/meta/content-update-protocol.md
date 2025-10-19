@@ -104,14 +104,3 @@ When co-developing new modules or essays:
 ```
 
 ---
-
-## Philosophy
-
-> “The Vault grows by reflective iteration — every push is a philosophical act.”
-
-The goal isn’t perfection but continuity: keep the loop running — Draft → Reflect → Publish → Refactor.
-
----
-
-
-

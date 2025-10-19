@@ -13,4 +13,4 @@ Welcome to my public knowledge space — a living notebook where I publish my pr
 - **Notes**: Practical guides (Fedora Samba, Fcitx5, PreSonus cancel guide)
 - **Essays**: Education narratives, culture/tech reflections
 
-> Repo: `https://github.com/leo-nakayama/lyceum-vault`
+> Repo: [`https://github.com/leo-nakayama/leo-nakayama.github.io`]

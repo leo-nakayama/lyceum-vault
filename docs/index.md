@@ -1,5 +1,5 @@
 
-# Lyceum Vault
+# Leo's Lyceum Vault
 
 Welcome to my public knowledge space — a living notebook where I publish my projects, documentation, and essays.
 
@@ -9,6 +9,7 @@ Welcome to my public knowledge space — a living notebook where I publish my pr
 
 ## Highlights
 
+- **Frameworks**: Reflective Computing (Naikan, Biodome, Dialectic)
 - **Projects**: DSL inference app, Lyceum Workbench (Linux + automation + music)
 - **Notes**: Practical guides (Fedora Samba, Fcitx5, PreSonus cancel guide)
 - **Essays**: Education narratives, culture/tech reflections

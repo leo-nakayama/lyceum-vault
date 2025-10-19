@@ -1,0 +1,1193 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://leo-nakayama.github.io/notes/github-actions-vs-aws-cicd/">
+      
+      
+        <link rel="prev" href="../fedora-samba-permissions/">
+      
+      
+        <link rel="next" href="../../essays/education-narrative-structure/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>GitHub Action vs AWS CI/CD - Leo's Lyceum Vault</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mkdocs-to-github-pages-on-aws-conceptual-equivalent" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Leo&#39;s Lyceum Vault" class="md-header__button md-logo" aria-label="Leo's Lyceum Vault" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Leo's Lyceum Vault
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GitHub Action vs AWS CI/CD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Leo&#39;s Lyceum Vault" class="md-nav__button md-logo" aria-label="Leo's Lyceum Vault" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Leo's Lyceum Vault
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reflective Computing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Reflective Computing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reflective-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reflective-computing/synthetic-naikan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Synthetic Naikan
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reflective-computing/aristotelian-biodome/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Aristotelian Biodome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reflective-computing/dialectic-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dialectic Modes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reflective-computing/reflective-computing-manifesto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Manifesto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/lyceum-workbench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lyceum Workbench
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/dsl-inference-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DSL Inference App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Notes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presonus-cancel-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PreSonus Cancel Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Fcitx5 Setup (KDE/Ubuntu)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fedora-samba-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Fedora Samba Permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    GitHub Action vs AWS CI/CD
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Action vs AWS CI/CD
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diagram-high-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram (high-level)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-pieces-youd-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core pieces you’d create
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-buildspecyml-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal buildspec.yml (MkDocs)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-s3-deploy-cli-one-off-or-from-a-deploy-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example S3 deploy (CLI) – one-off or from a deploy stage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typical-iam-policy-snippet-for-codebuild-to-write-to-your-s3-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typical IAM policy snippet for CodeBuild to write to your S3 bucket
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-github-actions-feels-simpler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why GitHub Actions "feels" simpler
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why GitHub Actions &#34;feels&#34; simpler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparison
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Essays
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Essays
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../essays/education-narrative-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Education Narrative Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Meta
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Meta
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/content-update-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Content Update Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="mkdocs-to-github-pages-on-aws-conceptual-equivalent">“MkDocs to GitHub Pages” on AWS (conceptual equivalent)<a class="headerlink" href="#mkdocs-to-github-pages-on-aws-conceptual-equivalent" title="Permanent link">&para;</a></h1>
+<h2 id="diagram-high-level">Diagram (high-level)<a class="headerlink" href="#diagram-high-level" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>You push to main
+        │
+        ▼
+ CodePipeline (source: GitHub or CodeCommit)
+        │
+   triggers build
+        ▼
+   CodeBuild (uses buildspec.yml)
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>pip install mkdocs/material
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>mkdocs build → ./site
+        │
+  artifacts: ./site (static HTML/CSS/JS)
+        │
+        ▼
+ Deploy stage
+   • S3 static website bucket (upload ./site)
+   • (optional) Invalidate CloudFront cache
+</code></pre></div>
+
+<hr />
+<h2 id="core-pieces-youd-create">Core pieces you’d create<a class="headerlink" href="#core-pieces-youd-create" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>S3 bucket</strong> for hosting the static site</p>
+</li>
+<li>
+<p>Example: <code>s3://lyceum-vault-site</code></p>
+</li>
+<li>
+<p>Block public access <strong>OFF</strong>, website hosting <strong>ON</strong> (or keep private + serve via CloudFront)</p>
+</li>
+<li>
+<p><strong>(Recommended) CloudFront distribution</strong> in front of S3</p>
+</li>
+<li>
+<p>Custom domain + TLS via ACM</p>
+</li>
+<li>
+<p>Better latency + cache control</p>
+</li>
+<li>
+<p><strong>CodeBuild project</strong></p>
+</li>
+<li>
+<p>Builds the site using a <code>buildspec.yml</code></p>
+</li>
+<li>
+<p>Outputs <code>site/</code> as artifacts</p>
+</li>
+<li>
+<p><strong>CodePipeline</strong></p>
+</li>
+<li>
+<p><strong>Source</strong>: GitHub (or CodeCommit)</p>
+</li>
+<li><strong>Build</strong>: CodeBuild project</li>
+<li>
+<p><strong>Deploy</strong>: S3 deploy (and optional CloudFront invalidation via a custom Lambda or CodeBuild post-step)</p>
+</li>
+<li>
+<p><strong>IAM roles/policies</strong></p>
+</li>
+<li>
+<p>CodeBuild role: read source, write artifacts, put to S3</p>
+</li>
+<li>Pipeline role: orchestrate stages</li>
+</ol>
+<h2 id="minimal-buildspecyml-mkdocs">Minimal <code>buildspec.yml</code> (MkDocs)<a class="headerlink" href="#minimal-buildspecyml-mkdocs" title="Permanent link">&para;</a></h2>
+<p>Place this at your repo root (used by CodeBuild):</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+
+<span class="nt">phases</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">install</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runtime-versions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">python</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.12</span>
+<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install --upgrade pip</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install mkdocs mkdocs-material</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs build --strict</span>
+<span class="nt">artifacts</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;**/*&#39;</span>
+<span class="w">  </span><span class="nt">base-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">site</span>
+<span class="w">  </span><span class="nt">discard-paths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
+</code></pre></div>
+
+<p>This mirrors your GitHub Actions steps: install → build → produce <code>site/</code> as artifacts.</p>
+<hr />
+<h2 id="example-s3-deploy-cli-one-off-or-from-a-deploy-stage">Example S3 deploy (CLI) – one-off or from a deploy stage<a class="headerlink" href="#example-s3-deploy-cli-one-off-or-from-a-deploy-stage" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Upload locally built site/ to S3</span>
+aws<span class="w"> </span>s3<span class="w"> </span>sync<span class="w"> </span>site/<span class="w"> </span>s3://lyceum-vault-site<span class="w"> </span>--delete
+</code></pre></div>
+
+<p>In CodePipeline, the <strong>Deploy</strong> action would publish the build artifact to S3 automatically.</p>
+<h2 id="typical-iam-policy-snippet-for-codebuild-to-write-to-your-s3-bucket">Typical IAM policy snippet for CodeBuild to write to your S3 bucket<a class="headerlink" href="#typical-iam-policy-snippet-for-codebuild-to-write-to-your-s3-bucket" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span><span class="s2">&quot;s3:PutObjectAcl&quot;</span><span class="p">,</span><span class="s2">&quot;s3:DeleteObject&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:s3:::lyceum-vault-site/*&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;s3:ListBucket&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:s3:::lyceum-vault-site&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>In production, you’d scope permissions tightly and wire them to your CodeBuild role.</p>
+</blockquote>
+<hr />
+<h2 id="why-github-actions-feels-simpler">Why GitHub Actions "feels" simpler<a class="headerlink" href="#why-github-actions-feels-simpler" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Fewer moving parts</strong>: one YAML in your repo; no IAM/S3/CloudFront wiring.</li>
+<li><strong>Built-in hosting</strong>: GitHub Pages vs rolling your own static hosting stack.</li>
+<li><strong>Auth</strong>: ephemeral <code>GITHUB_TOKEN</code> vs IAM roles/secrets setup.</li>
+</ul>
+<h3 id="comparison">Comparison<a class="headerlink" href="#comparison" title="Permanent link">&para;</a></h3>
+<p>AWS shines when you need <strong>deep integration</strong> with AWS workloads (ECS/EKS/Lambda, multi-account deployments, secrets, VPC builds, etc.). For a <strong>static MkDocs site</strong>, GitHub Actions + Pages is lean and perfect.</p>
+<hr />
+<h1 id="github-actions-vs-aws-cicd-for-a-mkdocs-site">GitHub Actions vs AWS CI/CD for a MkDocs Site<a class="headerlink" href="#github-actions-vs-aws-cicd-for-a-mkdocs-site" title="Permanent link">&para;</a></h1>
+<p><strong>TL;DR</strong><br />
+For a static MkDocs site, <strong>GitHub Actions + GitHub Pages</strong> is simpler, cheaper, and faster to set up than AWS CodePipeline/CodeBuild/CodeDeploy + S3/CloudFront. Use AWS when you need enterprise-grade integrations with AWS workloads.</p>
+<hr />
+<h2 id="visual-github-actions-flow">Visual: GitHub Actions Flow<a class="headerlink" href="#visual-github-actions-flow" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>push to main
+│
+▼
+GitHub Actions (deploy.yml)
+
+<span class="k">1.</span> checkout
+<span class="k">2.</span> setup-python + pip install mkdocs/material
+<span class="k">3.</span> mkdocs build → ./site
+<span class="k">4.</span> deploy ./site → gh-pages
+   │
+   ▼
+   GitHub Pages serves https://&lt;user&gt;.github.io/&lt;repo&gt;/
+</code></pre></div>
+
+<hr />
+<h2 id="visual-aws-equivalent-flow">Visual: AWS “Equivalent” Flow<a class="headerlink" href="#visual-aws-equivalent-flow" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>push to main
+│
+▼
+CodePipeline (source: GitHub/CodeCommit)
+│
+▼
+CodeBuild (buildspec.yml)
+
+<span class="k">*</span><span class="w"> </span>pip install mkdocs/material
+<span class="k">*</span><span class="w"> </span>mkdocs build → ./site
+  │
+  ▼
+  Artifact: site/ → Deploy to S3 static website (optional: CloudFront)
+</code></pre></div>
+
+<hr />
+<h2 id="when-to-choose-which">When to choose which<a class="headerlink" href="#when-to-choose-which" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>| Situation | Choose |
+|---|---|
+| Static docs/portfolio, simple publish | <span class="gs">**GitHub Actions + Pages**</span> |
+| AWS-native app deployments (EC2/ECS/Lambda), complex infra, multi-account | <span class="gs">**AWS CodePipeline/CodeBuild/CodeDeploy**</span> |
+| Need global CDN, custom domain, strict IAM | Either (CloudFront vs Pages + custom domain) |
+| Want single-place DevOps inside GitHub | <span class="gs">**GitHub Actions**</span> |
+</code></pre></div>
+
+<hr />
+<h2 id="minimal-files">Minimal files<a class="headerlink" href="#minimal-files" title="Permanent link">&para;</a></h2>
+<h3 id="github-actions-githubworkflowsdeployyml">GitHub Actions (<code>.github/workflows/deploy.yml</code>)<a class="headerlink" href="#github-actions-githubworkflowsdeployyml" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy MkDocs to GitHub Pages</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> push</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">},</span><span class="nt"> workflow_dispatch</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="nt">permissions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> contents</span><span class="p">:</span><span class="w"> </span><span class="nv">write</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build-deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install --upgrade pip &amp;&amp; pip install mkdocs mkdocs-material</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs build --strict</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./site</span>
+</code></pre></div>
+
+<h3 id="aws-codebuild-buildspecyml">AWS CodeBuild (<code>buildspec.yml</code>)<a class="headerlink" href="#aws-codebuild-buildspecyml" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="nt">phases</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">install</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runtime-versions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> python</span><span class="p">:</span><span class="w"> </span><span class="nv">3.12</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install --upgrade pip</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install mkdocs mkdocs-material</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs build --strict</span>
+<span class="nt">artifacts</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">files</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;**/*&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">base-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">site</span>
+<span class="w">  </span><span class="nt">discard-paths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
+</code></pre></div>
+
+<hr />
+<h2 id="cost-ops">Cost &amp; Ops<a class="headerlink" href="#cost-ops" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>GitHub</strong>: Free for public repos. Private repos have generous minutes. Pages hosting free.</li>
+<li><strong>AWS</strong>: Pay per build minute, S3 storage/requests, CloudFront bandwidth. IAM setup and resource sprawl increase ops overhead.</li>
+</ul>
+<hr />
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
+<p><strong>Q: Can I still use a custom domain with GitHub Pages?</strong>
+Yes. Point DNS (CNAME) to <code>&lt;user&gt;.github.io</code>, add the <strong>Custom domain</strong> in Pages settings (and optional <code>cname:</code> in the deploy action).</p>
+<p><strong>Q: What about previews per branch?</strong>
+GitHub Actions supports deploying previews (e.g., to a <code>preview</code> prefix or separate bucket). On AWS you can create per-branch S3 buckets or CloudFront behaviors.</p>
+<p><strong>Q: Is Pages fast enough vs CloudFront?</strong>
+For personal docs, usually yes. If you need strict latency or enterprise controls, use CloudFront.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/leo-nakayama/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

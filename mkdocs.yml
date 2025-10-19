@@ -20,6 +20,8 @@ nav:
       - GitHub Action vs AWS CI/CD: notes/github-actions-vs-aws-cicd.md
   - Essays:
       - Education Narrative Structure: essays/education-narrative-structure.md
+  - Meta:
+      - Content Update Protocol: meta/content-update-protocol.md
 markdown_extensions:
   - admonition
   - codehilite

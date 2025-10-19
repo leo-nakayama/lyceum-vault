@@ -1,8 +1,8 @@
-# 1) “MkDocs to GitHub Pages” on AWS (conceptual equivalent)
+# “MkDocs to GitHub Pages” on AWS (conceptual equivalent)
 
 ## Diagram (high-level)
 
-```
+```markdown
 You push to main
         │
         ▼
@@ -21,6 +21,8 @@ You push to main
    • S3 static website bucket (upload ./site)
    • (optional) Invalidate CloudFront cache
 ```
+
+---
 
 ## Core pieces you’d create
 
@@ -76,6 +78,8 @@ artifacts:
 
 This mirrors your GitHub Actions steps: install → build → produce `site/` as artifacts.
 
+---
+
 ## Example S3 deploy (CLI) – one-off or from a deploy stage
 
 ```bash
@@ -99,6 +103,8 @@ In CodePipeline, the **Deploy** action would publish the build artifact to S3 au
 
 > In production, you’d scope permissions tightly and wire them to your CodeBuild role.
 
+---
+
 ## Why GitHub Actions felt simpler
 
 * **Fewer moving parts**: one YAML in your repo; no IAM/S3/CloudFront wiring.
@@ -109,13 +115,6 @@ AWS shines when you need **deep integration** with AWS workloads (ECS/EKS/Lambda
 
 ---
 
-# 2) New article for your Lyceum Vault (ready to paste)
-
-Create this file:
-
-**`docs/notes/github-actions-vs-aws-cicd.md`**
-
-```markdown
 # GitHub Actions vs AWS CI/CD for a MkDocs Site
 
 **TL;DR**  
@@ -125,7 +124,7 @@ For a static MkDocs site, **GitHub Actions + GitHub Pages** is simpler, cheaper,
 
 ## Visual: GitHub Actions Flow
 
-```
+```markdown
 
 push to main
 │
@@ -142,9 +141,11 @@ GitHub Actions (deploy.yml)
 
 ```
 
+---
+
 ## Visual: AWS “Equivalent” Flow
 
-```
+```markdown
 
 push to main
 │
@@ -160,12 +161,13 @@ CodeBuild (buildspec.yml)
   ▼
   Artifact: site/ → Deploy to S3 static website (optional: CloudFront)
 
-````
+```
 
 ---
 
 ## When to choose which
 
+```markdown
 | Situation | Choose |
 |---|---|
 | Static docs/portfolio, simple publish | **GitHub Actions + Pages** |
@@ -173,11 +175,14 @@ CodeBuild (buildspec.yml)
 | Need global CDN, custom domain, strict IAM | Either (CloudFront vs Pages + custom domain) |
 | Want single-place DevOps inside GitHub | **GitHub Actions** |
 
+```
+
 ---
 
 ## Minimal files
 
 ### GitHub Actions (`.github/workflows/deploy.yml`)
+
 ```yaml
 name: Deploy MkDocs to GitHub Pages
 on: { push: { branches: [ main ] }, workflow_dispatch: {} }
@@ -195,7 +200,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
-````
+```
 
 ### AWS CodeBuild (`buildspec.yml`)
 
@@ -237,20 +242,4 @@ GitHub Actions supports deploying previews (e.g., to a `preview` prefix or separ
 For personal docs, usually yes. If you need strict latency or enterprise controls, use CloudFront.
 
 ---
-
-````
-
-Then add it to your navigation.
-
-**Edit `mkdocs.yml` → `nav:`**
-```yaml
-  - Notes:
-      - PreSonus Cancel Guide: notes/presonus-cancel-guide.md
-      - GitHub Actions vs AWS CI/CD: notes/github-actions-vs-aws-cicd.md
-      - Fcitx5 Setup (KDE/Ubuntu): notes/fcitx5-setup.md
-      - Fedora Samba Permissions: notes/fedora-samba-permissions.md
-````
-
-Commit & push to `main`. Your Action will rebuild and the article will appear.
-
 

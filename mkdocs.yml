@@ -1,6 +1,6 @@
 
-site_name: Lyceum Vault
-site_url: https://leo-nakayama.github.io
+site_name: "Leo's Lyceum Vault"
+site_url: https://leo-nakayama.github.io/
 theme:
   name: material
   features:

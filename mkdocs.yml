@@ -1,41 +1,40 @@
-
 site_name: "Leo's Lyceum Vault"
 site_url: https://leo-nakayama.github.io/
 theme:
   name: material
   features:
-    - navigation.sections
-    - navigation.expand
-    - toc.integrate
-    - content.code.copy
+  - navigation.sections
+  - navigation.expand
+  - toc.integrate
+  - content.code.copy
 nav:
-  - Home: index.md
-  - Reflective Computing:
-      - Overview: reflective-computing/index.md
-      - Synthetic Naikan: reflective-computing/synthetic-naikan.md
-      - Aristotelian Biodome: reflective-computing/aristotelian-biodome.md
-      - Dialectic Modes: reflective-computing/dialectic-modes.md
-      - Manifesto: reflective-computing/reflective-computing-manifesto.md
-  - Projects:
-      - Lyceum Workbench: projects/lyceum-workbench.md
-      - DSL Inference App: projects/dsl-inference-app.md
-  - Notes:
-      - PreSonus Cancel Guide: notes/presonus-cancel-guide.md
-      - Fcitx5 Setup (KDE/Ubuntu): notes/fcitx5-setup.md
-      - Fedora Samba Permissions: notes/fedora-samba-permissions.md
-      - GitHub Action vs AWS CI/CD: notes/github-actions-vs-aws-cicd.md
+- Home: index.md
+- Reflective Computing:
+  - Overview: reflective-computing/index.md
+  - Synthetic Naikan: reflective-computing/synthetic-naikan.md
+  - Aristotelian Biodome: reflective-computing/aristotelian-biodome.md
+  - Dialectic Modes: reflective-computing/dialectic-modes.md
+  - Manifesto: reflective-computing/reflective-computing-manifesto.md
+- Projects:
+  - Lyceum Workbench: projects/lyceum-workbench.md
+  - DSL Inference App: projects/dsl-inference-app.md
+- Notes:
+  - PreSonus Cancel Guide: notes/presonus-cancel-guide.md
+  - Fcitx5 Setup (KDE/Ubuntu): notes/fcitx5-setup.md
+  - Fedora Samba Permissions: notes/fedora-samba-permissions.md
+  - GitHub Action vs AWS CI/CD: notes/github-actions-vs-aws-cicd.md
   - Essays:
       - Education Narrative Structure: essays/education-narrative-structure.md
-  - Meta:
-      - Content Update Protocol: meta/content-update-protocol.md
+- Meta:
+  - Content Update Protocol: meta/content-update-protocol.md
 markdown_extensions:
-  - admonition
-  - codehilite
-  - footnotes
-  - tables
-  - toc:
-      permalink: true
+- admonition
+- codehilite
+- footnotes
+- tables
+- toc:
+    permalink: true
 extra:
   social:
-    - icon: material/github
-      link: https://github.com/leo-nakayama/
+  - icon: material/github
+    link: https://github.com/leo-nakayama/

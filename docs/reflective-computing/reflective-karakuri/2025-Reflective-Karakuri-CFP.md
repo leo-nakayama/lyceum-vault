@@ -40,3 +40,7 @@ Reflective Computing · *Asobi* Culture · Synthetic Naikan
 
 ## Paper Category
 **Theoretical / Conceptual Framework** — Cross-disciplinary synthesis of AI architecture, Japanese aesthetics, and moral epistemology for reflective system design.
+
+**Related Files**
+- [Observation Report](2025-Reflective-Karakuri-ObservationReport.md)
+- [Methodology](methodology.md)

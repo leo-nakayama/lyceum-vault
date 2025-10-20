@@ -1,4 +1,4 @@
-site_name: "Leo's Lyceum Vault"
+site_name: Leo's Lyceum Vault
 site_url: https://leo-nakayama.github.io/
 theme:
   name: material
@@ -7,6 +7,9 @@ theme:
   - navigation.expand
   - toc.integrate
   - content.code.copy
+extra_javascript:
+  - https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js
+  - js/mermaid-init.js
 nav:
 - Home: index.md
 - Reflective Computing:
@@ -18,22 +21,30 @@ nav:
 - Projects:
   - Lyceum Workbench: projects/lyceum-workbench.md
   - DSL Inference App: projects/dsl-inference-app.md
+- Artifacts:
+  - Overview: reflective-computing/artifacts/index.md
+  - Reflective Karakuri:
+    - Overview: reflective-computing/reflective-karakuri/index.md
+    - CFP: reflective-computing/reflective-karakuri/2025-Reflective-Karakuri-CFP.md
+    - Observation Report: reflective-computing/reflective-karakuri/2025-Reflective-Karakuri-ObservationReport.md
+    - Methodology: reflective-computing/reflective-karakuri/methodology.md
 - Notes:
+  - Mermaid Recovery Checklist: notes/mermaid-recovery-checklist.md
   - PreSonus Cancel Guide: notes/presonus-cancel-guide.md
   - Fcitx5 Setup (KDE/Ubuntu): notes/fcitx5-setup.md
   - Fedora Samba Permissions: notes/fedora-samba-permissions.md
   - GitHub Action vs AWS CI/CD: notes/github-actions-vs-aws-cicd.md
-  - Essays:
-      - Education Narrative Structure: essays/education-narrative-structure.md
 - Meta:
   - Content Update Protocol: meta/content-update-protocol.md
 markdown_extensions:
-- admonition
-- codehilite
-- footnotes
-- tables
-- toc:
-    permalink: true
+  - admonition
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - fenced_code
+  - pymdownx.superfences
 extra:
   social:
   - icon: material/github

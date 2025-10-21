@@ -6,10 +6,7 @@ theme:
   - navigation.sections
   - navigation.expand
   - toc.integrate
-  - content.code.copy
-extra_javascript:
-  - https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js
-  - js/mermaid-init.js
+  - content.code.copyk
 nav:
 - Home: index.md
 - Reflective Computing:
@@ -21,14 +18,8 @@ nav:
 - Projects:
   - Lyceum Workbench: projects/lyceum-workbench.md
   - DSL Inference App: projects/dsl-inference-app.md
-- Artifacts:
-  - Overview: reflective-computing/artifacts/index.md
-  - Reflective Karakuri:
-    - Overview: reflective-computing/reflective-karakuri/index.md
-    - CFP: reflective-computing/reflective-karakuri/2025-Reflective-Karakuri-CFP.md
-    - Observation Report: reflective-computing/reflective-karakuri/2025-Reflective-Karakuri-ObservationReport.md
-    - Methodology: reflective-computing/reflective-karakuri/methodology.md
 - Notes:
+  - Create Basic Python Environment: notes/Create-Basic-Python-Environment-then-start-from-red.md
   - Fodeora MAC Address Randomization Issue: notes/Fedora_MAC_Address_Randomization_Issue.md
   - Mermaid Recovery Checklist: notes/mermaid-recovery-checklist.md
   - PreSonus Cancel Guide: notes/presonus-cancel-guide.md
@@ -43,9 +34,6 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
-  - pymdownx.details
-  - fenced_code
-  - pymdownx.superfences
 extra:
   social:
   - icon: material/github

@@ -19,12 +19,6 @@
 
 ## 🧩 Future Artifacts
 
-=== "Template"
-    - **Overview:** [Template README](../artifact-template/index.md)
-    - **CFP:** [Template CFP](../artifact-template/<ARTIFACT>-CFP.md)
-    - **Observation Report:** [Template Observation Report](../artifact-template/<ARTIFACT>-ObservationReport.md)
-    - **Methodology:** [Template Methodology](../artifact-template/methodology.md)
-
 === "Planned"
     - **Synthetic Naikan Extensions** — Applying Naikan loops to multi-agent reflection.
     - **Aristotelian Organism** — Causal ontology for music and AI composition.

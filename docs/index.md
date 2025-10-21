@@ -1,4 +1,3 @@
-
 # Leo's Lyceum Vault
 
 Welcome to my public knowledge space — a living notebook where I publish my projects, documentation, and essays.

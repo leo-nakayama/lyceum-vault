@@ -26,7 +26,7 @@ to be assigned, breaking router DHCP binding and SSH connectivity.
 | `ping e14` (from g16) | `Destination Host Unreachable` | No route to previous IP |
 | `nslookup e14` | `192.168.1.12` | Name resolution still cached |
 | `ssh leo@e14` | `No route to host` | TCP unreachable |
-| `ip addr show wlp3s0` (on e14) | `link/ether 0a:8c:57:a9:8b:ad permaddr 14:b5:cd:1d:da:5f` | Randomized MAC detected |
+| `ip addr show wlp3s0` (on e14) | `link/ether 0a:8c:57:a9:8b:ad permaddr aa:aa:aa:aa:aa:aaf` | Randomized MAC detected |
 
 **Root Cause:**  
 Fedora’s `NetworkManager` uses a randomized Wi-Fi MAC address each connection  
@@ -51,7 +51,7 @@ Verify:
 ip link show wlp3s0
 ```
 
-✅ You should now see the **hardware MAC** (e.g., `14:b5:cd:1d:da:5f`).
+✅ You should now see the **hardware MAC**.
 
 ---
 
@@ -80,7 +80,7 @@ sudo systemctl restart NetworkManager
 On your router, bind:
 
 ```
-14:B5:CD:1D:DA:5F → 192.168.1.12
+aa:aa:aa:aa:aa:aa → 192.168.1.12
 ```
 
 This ensures the IP stays fixed across reboots and OS reinstalls.
@@ -143,7 +143,7 @@ fi
 
 ✅ **Outcome:**
 
-* e14 now consistently reports its hardware MAC (`14:b5:cd:1d:da:5f`).
+* e14 now consistently reports its hardware MAC.
 * Router rebinds static IP `192.168.1.12`.
 * g16 ↔ e14 SSH restored.
 * Verified using `check-mac.sh`.

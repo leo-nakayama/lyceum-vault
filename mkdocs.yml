@@ -29,6 +29,7 @@ nav:
     - Observation Report: reflective-computing/reflective-karakuri/2025-Reflective-Karakuri-ObservationReport.md
     - Methodology: reflective-computing/reflective-karakuri/methodology.md
 - Notes:
+  - Fodeora MAC Address Randomization Issue: notes/Fedora_MAC_Address_Randomization_Issue.md
   - Mermaid Recovery Checklist: notes/mermaid-recovery-checklist.md
   - PreSonus Cancel Guide: notes/presonus-cancel-guide.md
   - Fcitx5 Setup (KDE/Ubuntu): notes/fcitx5-setup.md

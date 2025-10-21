@@ -1,8 +1,6 @@
 # Dialectic Modes
 
-```markdown
 > “Contradiction is the mother of structure.”
-```
 
 ---
 

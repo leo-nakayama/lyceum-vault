@@ -1,8 +1,6 @@
 # 🏛️ Aristotelian Biodome
 
-```markdown
 > “Form is not imposed on matter — it arises through rhythm.”
-```
 
 ---
 

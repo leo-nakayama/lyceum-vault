@@ -1,9 +1,6 @@
-### 🪞 `docs/reflective-computing/reflective-computing-manifesto.md`
-
-```markdown
 # Reflective Computing Manifesto
+
 > “We compute, therefore we reflect.”
-```
 
 ---
 

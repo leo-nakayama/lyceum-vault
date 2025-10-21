@@ -1,6 +1,5 @@
 # Create Basic Python Environment (then start from red)
 
-
 A basic Python envivonment setup using `venv`, `pip`, `ruff`, `mypy`, and `pytest`.
 
 ## Start with creating a new venv folder

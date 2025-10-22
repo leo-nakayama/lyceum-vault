@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://leo-nakayama.github.io/notes/Create-Basic-Python-Environment-then-start-from-red/">
+        <link rel="canonical" href="https://leo-nakayama.github.io/notes/Configuring-SSH-Key-based-Authentication/">
       
       
-        <link rel="prev" href="../Configuring-SSH-Key-based-Authentication/">
+        <link rel="prev" href="../../projects/dsl-inference-app/">
       
       
-        <link rel="next" href="../console-terminal-shell/">
+        <link rel="next" href="../Create-Basic-Python-Environment-then-start-from-red/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Create Basic Python Environment - Leo's Lyceum Vault</title>
+        <title>Configuring SSH Key-based Authentication - Leo's Lyceum Vault</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#create-basic-python-environment-then-start-from-red" class="md-skip">
+        <a href="#configuring-ssh-key-based-authentication" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Create Basic Python Environment
+              Configuring SSH Key-based Authentication
             
           </span>
         </div>
@@ -527,29 +527,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../Configuring-SSH-Key-based-Authentication/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Configuring SSH Key-based Authentication
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -567,7 +544,7 @@
   
   
   <span class="md-ellipsis">
-    Create Basic Python Environment
+    Configuring SSH Key-based Authentication
     
   </span>
   
@@ -580,7 +557,7 @@
   
   
   <span class="md-ellipsis">
-    Create Basic Python Environment
+    Configuring SSH Key-based Authentication
     
   </span>
   
@@ -603,45 +580,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#start-with-creating-a-new-venv-folder" class="md-nav__link">
+  <a href="#create-an-ssh-key-pair" class="md-nav__link">
     <span class="md-ellipsis">
-      Start with creating a new venv folder
+      Create an SSH Key-pair
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-pip-verify-the-venv-is-activated" class="md-nav__link">
+  <a href="#add-private-key-identity-to-the-openssh-authentication-agent" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade pip. Verify the venv is activated.
+      Add Private Key Identity to the OpenSSH Authentication Agent
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-ruff-mypy-and-pytest" class="md-nav__link">
+  <a href="#copy-the-public-key-to-host" class="md-nav__link">
     <span class="md-ellipsis">
-      Install ruff, mypy, and pytest
+      Copy the Public Key to Host
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-coding-by-testing" class="md-nav__link">
+  <a href="#set-permissions" class="md-nav__link">
     <span class="md-ellipsis">
-      Start coding by testing
+      Set Permissions
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#freeze-requirementstxt" class="md-nav__link">
+  <a href="#test-connections" class="md-nav__link">
     <span class="md-ellipsis">
-      Freeze requirements.txt
+      Test Connections
     </span>
   </a>
   
@@ -651,6 +628,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Create-Basic-Python-Environment-then-start-from-red/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Basic Python Environment
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -915,55 +915,44 @@
 
 
 
-<h1 id="create-basic-python-environment-then-start-from-red">Create Basic Python Environment (then start from red)<a class="headerlink" href="#create-basic-python-environment-then-start-from-red" title="Permanent link">&para;</a></h1>
-<p>A basic Python envivonment setup using <code>venv</code>, <code>pip</code>, <code>ruff</code>, <code>mypy</code>, and <code>pytest</code>.</p>
-<h2 id="start-with-creating-a-new-venv-folder">Start with creating a new venv folder<a class="headerlink" href="#start-with-creating-a-new-venv-folder" title="Permanent link">&para;</a></h2>
-<pre><code class="language-text">mkdir test
-cd test/
-python3 -m venv .venv
-source .venv/bin/activate
-</code></pre>
-<p>The begining of the prompt line shows (<VENV_DIR_NAME>) to indicate the venv is active. </p>
-<pre><code class="language-text">(.venv) ⚙leo@g16:~/Projects/test$
-</code></pre>
-<p>Notice that this perenthesis with <VENV_DIR_NAME> inside does not gurantee the venv is working as ecpected. For example, if venv is not actually activated, the command line <code>python3 foo.py</code> can accidentally run the system wide python3 (<code>/usr/bin/python3 foo.py</code>), which is not desirable. Use <code>which &lt;COMMAND&gt;</code> to ensure <code>.venv/bin/&lt;COMMAND&gt;</code> is activated.</p>
-<hr />
-<h2 id="upgrade-pip-verify-the-venv-is-activated">Upgrade pip. Verify the venv is activated.<a class="headerlink" href="#upgrade-pip-verify-the-venv-is-activated" title="Permanent link">&para;</a></h2>
-<p><strong>If there is a requirement.txt</strong></p>
-<pre><code class="language-bash">pip install -r requirements.txt
-</code></pre>
-<p>(Else)</p>
-<pre><code class="language-bash">pip install --upgrade pip
-which pip &amp;&amp; which python3
-# /home/leo/Projects/test/.venv/bin/pip
-# /home/leo/Projects/test/.venv/bin/python3
+<h1 id="configuring-ssh-key-based-authentication">Configuring SSH Key-based Authentication<a class="headerlink" href="#configuring-ssh-key-based-authentication" title="Permanent link">&para;</a></h1>
+<h2 id="create-an-ssh-key-pair">Create an SSH Key-pair<a class="headerlink" href="#create-an-ssh-key-pair" title="Permanent link">&para;</a></h2>
+<p><code>ssh-keygen [-t dsa | ecdsa | ecdsa-sk | ed25519 | ed25519-sk | rsa] [-f output_keyfile] [-C comment]</code> generates an ssh key-pair with a specified type [-t] with a file name [-f]. A file name such as "id_ed25519_rhel9_server" could be used for an optional file name extension. </p>
+<pre><code class="language-bash">ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519&lt;OPTIONAL_NAME&gt; -C &quot;&lt;USER&gt;@$&lt;HOST&gt;&quot;
 </code></pre>
 <hr />
-<h2 id="install-ruff-mypy-and-pytest">Install ruff, mypy, and pytest<a class="headerlink" href="#install-ruff-mypy-and-pytest" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">which pip &amp;&amp; which python3 # make sure venv is activated
+<h2 id="add-private-key-identity-to-the-openssh-authentication-agent">Add Private Key Identity to the OpenSSH Authentication Agent<a class="headerlink" href="#add-private-key-identity-to-the-openssh-authentication-agent" title="Permanent link">&para;</a></h2>
+<p><code>ssh-add</code> adds private key identities to the OpenSSH authentication agent.
+Skip this process of addin the identity to the agent when a passphrase was not set during the key creation stage using the <code>ssh-keygen</code>. </p>
+<p>Ensure the ssh-agent is activated</p>
+<pre><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
 </code></pre>
-<p><strong>Only</strong> if venv activation is verified:</p>
-<pre><code class="language-bash">pip install ruff
-pip install mypy
-pip install pytest
-</code></pre>
-<hr />
-<h2 id="start-coding-by-testing">Start coding by testing<a class="headerlink" href="#start-coding-by-testing" title="Permanent link">&para;</a></h2>
-<p>Start by test<em>.py then </em>.py (red-green/TDD)</p>
-<pre><code class="language-text">(.venv) ⚙leo@g16:~/Projects/test$ vim test_one.py
-(.venv) ⚙leo@g16:~/Projects/test$ mypy test_one.py
-Success: no issues found in 1 source file
-(.venv) ⚙leo@g16:~/Projects/test$ pytest -q
-.                                                                       [100%]
-1 passed in 0.00s
-
-(.venv) ⚙leo@g16:~/Projects/test$ vim main.py
-(.venv) ⚙leo@g16:~/Projects/test$ mypy .
-Success: no issues found in 2 source files
+<p>Add an ssh private key identity to the agent</p>
+<pre><code class="language-bash">ssh-add ~/.ssh/id_ed25519&lt;OPTIONAL_NAME&gt;
 </code></pre>
 <hr />
-<h2 id="freeze-requirementstxt">Freeze requirements.txt<a class="headerlink" href="#freeze-requirementstxt" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">pip freeze &gt; requirements.txt
+<h2 id="copy-the-public-key-to-host">Copy the Public Key to Host<a class="headerlink" href="#copy-the-public-key-to-host" title="Permanent link">&para;</a></h2>
+<p><code>ssh-copy-id -i [identity_file]</code> copies public key to the targeted HOST as USER.</p>
+<pre><code class="language-bash">ssh-copy-id -i ~/.ssh/id_ed25519&lt;OPTIONAL_NAME&gt;.pub &lt;USER&gt;@&lt;HOST&gt;
+</code></pre>
+<p>For hosts not accepting <code>ssh-copy-id</code> such as GitHub.com, copy the public key manually. For GitHub,as an example, use <code>cat</code> and paste the public key manually on GitHub → Settings → SSH and GPG keys → New SSH key.</p>
+<pre><code class="language-bash">cat ~/.ssh/id_ed25519&lt;OPTIONAL_NAME&gt;.pub
+</code></pre>
+<hr />
+<h2 id="set-permissions">Set Permissions<a class="headerlink" href="#set-permissions" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>chmod 700</code> # for .ssh directory</li>
+<li><code>chmod 600</code> # for config, private key files</li>
+<li><code>chmod 644</code> # for public key files</li>
+</ul>
+<pre><code class="language-bash">chmod 700 ~/.ssh
+chmod 600 ~/.ssh/config ~/.ssh/id_ed25519_*
+chmod 644 ~/.ssh/*.pub
+</code></pre>
+<hr />
+<h2 id="test-connections">Test Connections<a class="headerlink" href="#test-connections" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">ssh -T git@github.com    # Expect GitHub greeting &quot;Hi &lt;USER_NAME&gt;...&quot;
+ssh &lt;HOST&gt;                # Should log into your host
 </code></pre>
 <hr />
 

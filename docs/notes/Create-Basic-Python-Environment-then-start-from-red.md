@@ -11,11 +11,14 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-Now venv activates like:
+The begining of the prompt line shows (<VENV_DIR_NAME>) to indicate the venv is active. 
 
 ```text
 (.venv) ⚙leo@g16:~/Projects/test$
 ```
+
+Notice that this perenthesis with <VENV_DIR_NAME> inside does not gurantee the venv is working as ecpected. For example, if venv is not actually activated, the command line `python3 foo.py` can accidentally run the system wide python3 (`/usr/bin/python3 foo.py`), which is not desirable. Use `which <COMMAND>` to ensure `.venv/bin/<COMMAND>` is activated.
+
 ---
 
 ## Upgrade pip. Verify the venv is activated.

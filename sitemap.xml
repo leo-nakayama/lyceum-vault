@@ -2,74 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://leo-nakayama.github.io/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/meta/content-update-protocol/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/notes/Configuring-SSH-Key-based-Authentication/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/notes/Create-Basic-Python-Environment-then-start-from-red/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/notes/Fedora_MAC_Address_Randomization_Issue/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/notes/console-terminal-shell/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/notes/fcitx5-setup/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/notes/fedora-samba-permissions/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/notes/github-actions-vs-aws-cicd/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/notes/mermaid-recovery-checklist/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/notes/presonus-cancel-guide/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
+    </url>
+    <url>
+         <loc>https://leo-nakayama.github.io/projects/FOWL/</loc>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/projects/dsl-inference-app/</loc>
-         <lastmod>2025-10-22</lastmod>
-    </url>
-    <url>
-         <loc>https://leo-nakayama.github.io/projects/lyceum-workbench/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/reflective-computing/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/reflective-computing/aristotelian-biodome/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/reflective-computing/dialectic-modes/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/reflective-computing/reflective-computing-manifesto/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>https://leo-nakayama.github.io/reflective-computing/synthetic-naikan/</loc>
-         <lastmod>2025-10-22</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
 </urlset>

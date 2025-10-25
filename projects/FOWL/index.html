@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://leo-nakayama.github.io/projects/lyceum-workbench/">
+        <link rel="canonical" href="https://leo-nakayama.github.io/projects/FOWL/">
       
       
         <link rel="prev" href="../../reflective-computing/reflective-computing-manifesto/">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Lyceum Workbench - Leo's Lyceum Vault</title>
+        <title>Fully Outsourced Wisdom Linkage - Leo's Lyceum Vault</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lyceum-workbench" class="md-skip">
+        <a href="#fowl-fully-outsourced-wisdom-linkage" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lyceum Workbench
+              Fully Outsourced Wisdom Linkage
             
           </span>
         </div>
@@ -446,7 +446,7 @@
   
   
   <span class="md-ellipsis">
-    Lyceum Workbench
+    Fully Outsourced Wisdom Linkage
     
   </span>
   
@@ -459,7 +459,7 @@
   
   
   <span class="md-ellipsis">
-    Lyceum Workbench
+    Fully Outsourced Wisdom Linkage
     
   </span>
   
@@ -482,9 +482,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is it?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-is-not" class="md-nav__link">
+    <span class="md-ellipsis">
+      What it is not.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#areas" class="md-nav__link">
     <span class="md-ellipsis">
       Areas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nodes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-fowl-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current FOWL Architecture
     </span>
   </a>
   
@@ -888,14 +924,110 @@
 
 
 
-<h1 id="lyceum-workbench">Lyceum Workbench<a class="headerlink" href="#lyceum-workbench" title="Permanent link">&para;</a></h1>
-<p>My multi-machine lab: g16 (desktop), e14 (laptop), m900 (server). Focused on Linux automation, backups, and creative workflows.</p>
+<h1 id="fowl-fully-outsourced-wisdom-linkage">FOWL - Fully Outsourced Wisdom Linkage<a class="headerlink" href="#fowl-fully-outsourced-wisdom-linkage" title="Permanent link">&para;</a></h1>
+<h2 id="what-is-it">What is it?<a class="headerlink" href="#what-is-it" title="Permanent link">&para;</a></h2>
+<p>FOWL is my multi-machine lab: g16 (desktop), e14 (laptop), m900 (server), a00(observatory) that is based on my concept of "philosophy of systems". My focus of the architectual design is on Linux automation, backups, observatory (Grafana) as a platform of creative workflows. FOWL is based on my concept of "philosophy of systems".</p>
+<h2 id="what-it-is-not">What it is not.<a class="headerlink" href="#what-it-is-not" title="Permanent link">&para;</a></h2>
+<p>FOWL is not for owl, nor isn't a false owl. </p>
 <h2 id="areas">Areas<a class="headerlink" href="#areas" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Storage tiers (hot/warm/cold), LVM, rsync/borg</li>
 <li>Samba + ACLs; remote access; CI/CD for home lab</li>
 <li>Music stack (LilyPond, Python Euclidean rhythms)</li>
+<li>DSL module runner (AWS, Python, OpenAI for philosophical modules)</li>
+<li>Observatory layer (Grafana, home LAN)</li>
 </ul>
+<h2 id="nodes">Nodes<a class="headerlink" href="#nodes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>🐦‍🔥  Observatory</li>
+<li>🐔 Storage &amp; Backup</li>
+<li>🐧Computation</li>
+<li>🦆 Development</li>
+</ul>
+<h2 id="current-fowl-architecture">Current FOWL Architecture<a class="headerlink" href="#current-fowl-architecture" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Layer / Aspect</strong></th>
+<th><strong>Role / Function</strong></th>
+<th><strong>Host(s)</strong></th>
+<th><strong>Status</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🐦‍🔥<strong>a00 (Fedora server)</strong></td>
+<td><em>Observatory Node</em> — runs Prometheus (collector) and Grafana (visualization). Central metrics brain of the Lyceum ecosystem.</td>
+<td>192.168.1.x</td>
+<td>✅ Active</td>
+<td>SELinux adjusted for Grafana↔Prometheus. “Node Exporter Full” and “Prometheus 2.0 Stats” dashboards working.</td>
+</tr>
+<tr>
+<td>🐔<strong>m900 ( RHEL server)</strong></td>
+<td><em>Storage &amp; Backup Tier</em> — Borg + rsync tier; currently preparing for node_exporter service.</td>
+<td>192.168.1.x</td>
+<td>⚠️ Partial</td>
+<td>Metrics exporter not yet responding on 9100; firewall &amp; user setup pending.</td>
+</tr>
+<tr>
+<td>🐧<strong>g16 (Ubuntu desktop)</strong></td>
+<td><em>Computation Node</em> — GPU / AI inference and DSL experiments.</td>
+<td>192.168.1.x</td>
+<td>✅ Active</td>
+<td>Node exporter connected and visible on Grafana. Serves as the main AI/ML execution node.</td>
+</tr>
+<tr>
+<td>🦆<strong>e14 (Fedora laptop)</strong></td>
+<td><em>Development Node</em> — code editing, Python + DSL integration; handles local builds and CI staging.</td>
+<td>192.168.1.x</td>
+<td>✅ Active</td>
+<td>Node exporter connected. Acts as dev and local CI/CD workstation.</td>
+</tr>
+<tr>
+<td><strong>iPad Pro</strong></td>
+<td><em>Control / Visualization Surface</em> — remote Grafana access, status viewing.</td>
+<td>Dynamic (client)</td>
+<td>✅ Active</td>
+<td>Accesses Grafana dashboard via LAN. No telemetry agent (view-only).</td>
+</tr>
+<tr>
+<td><strong>Network Infrastructure</strong></td>
+<td><em>LAN Backbone</em> — 192.168.1.0/24 subnet; static IP mapping per node.</td>
+<td>Home LAN</td>
+<td>✅ Stable</td>
+<td>Prometheus scrapes via IP:9100; firewall tuned per host; no mTLS yet.</td>
+</tr>
+<tr>
+<td><strong>Monitoring Stack</strong></td>
+<td><em>Prometheus + Grafana</em> — central observability + visualization framework.</td>
+<td>a00</td>
+<td>✅ Operational</td>
+<td>15s scrape interval; dashboards imported (IDs 1860, 3662). SELinux and port labeling complete.</td>
+</tr>
+<tr>
+<td><strong>Philosophical Layer (Vault)</strong></td>
+<td><em>Knowledge Layer</em> — Observation Reports, Aristotelian DSLs, philosophical reflection data.</td>
+<td>Lyceum Vault (GitHub + Obsidian)</td>
+<td>✅ Active</td>
+<td>Not yet annotated into Grafana timelines; forms conceptual input for Reflexivity Stage II.</td>
+</tr>
+<tr>
+<td><strong>Security Context</strong></td>
+<td><em>Access Control &amp; Policy</em> — SELinux, systemd hardening, SSH keys, firewall rules.</td>
+<td>All nodes</td>
+<td>✅ Tightened</td>
+<td>SELinux boolean for Grafana enabled; Prometheus port relabeled to <code>http_port_t</code>.</td>
+</tr>
+<tr>
+<td><strong>Next Integration Target</strong></td>
+<td><em>Unified Reflexive Loop</em> — correlate Observation Reports with system metrics.</td>
+<td>Cross-system</td>
+<td>🚧 Planned</td>
+<td>Requires annotation layer (Grafana API or Loki) and m900 exporter fix.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <p>See related guides in <strong>Notes</strong>.</p>
 

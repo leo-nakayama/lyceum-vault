@@ -4,10 +4,6 @@
 
 FOWL is my multi-machine lab: g16 (desktop), e14 (laptop), m900 (server), a00(observatory) that is based on my concept of "philosophy of systems". My focus of the architectual design is on Linux automation, backups, observatory (Grafana) as a platform of creative workflows. FOWL is based on my concept of "philosophy of systems".
 
-## What it is not.
-
-FOWL is not for owl, nor isn't a false owl. 
-
 ## Areas
 - Storage tiers (hot/warm/cold), LVM, rsync/borg
 - Samba + ACLs; remote access; CI/CD for home lab
